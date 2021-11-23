@@ -79,8 +79,10 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 			{
 				Id = merc.Id;
 				Level = merc.Level;
+				Coins = merc.CurrencyAmount;
 				Abilities = merc.Abilities.Select(x => new Ability(x)).ToList();
 				Equipment = merc.Equipments.Select(x => new Ability(x)).ToList();
+				ArtVariations = merc.ArtVariations.Select(x => x.DbfId).ToList();
 			}
 
 			[JsonProperty("id")]
@@ -89,11 +91,17 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 			[JsonProperty("level")]
 			public int Level { get; }
 
+			[JsonProperty("coins")]
+			public long Coins { get; }
+
 			[JsonProperty("abilities")]
 			public List<Ability> Abilities { get; } 
 
 			[JsonProperty("equipment")]
 			public List<Ability> Equipment { get; } 
+
+			[JsonProperty("art_variations")]
+			public List<int> ArtVariations { get; } 
 
 			public class Ability
 			{
@@ -109,7 +117,6 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 				[JsonProperty("tier")]
 				public int Tier { get; set; }
 			}
-	}
-
+		}
 	}
 }
